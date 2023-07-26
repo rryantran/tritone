@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }} - Tritone</title>
+  </head>
+  <body>
+    <div>
+      The Tritone:
+      <a href="{{ url_for('index') }}">Home</a>
+    </div>
+    <hr />
+    {% block content %} {% endblock %}
+  </body>
+</html>
