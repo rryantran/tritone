@@ -1,6 +1,7 @@
 import feedparser
 from app import app, db
 from app.models import Article
+from sqlalchemy import desc
 from flask import render_template
 from time import mktime
 from datetime import datetime, timezone
@@ -27,6 +28,6 @@ def index():
                 db.session.add(new_article)
                 db.session.commit()
 
-    articles = Article.query.all()
+    articles = Article.query.order_by(desc(Article.pubdate())).all()
 
     return render_template('index.html', title='Home', articles=articles)
