@@ -22,7 +22,7 @@ def index():
             article_title = Article.query.filter_by(title=entry.title).first()
 
             if article_title is None:
-                new_article = Article(title=entry.title, source=parsed_feed.feed.title, link=entry.link,
+                new_article = Article(title=entry.title, author=entry.author, link=entry.link,
                                       desc=entry.description, pubdate=to_datetime(entry.published_parsed))
                 db.session.add(new_article)
                 db.session.commit()
