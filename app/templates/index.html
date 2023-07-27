@@ -1,4 +1,12 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block content %}
+{% block content %} 
+{% for article in articles %}
+  <p>Title: {{ article.title }}</p>
+  <p>Source: {{ article.source }}</p>
+  <p>Link: <a href="{{ article.link }}">{{ article.link }}</a></p>
+  <p>Description: {{ article.desc }}</p>
+  <p>Date Published: {{ article.pubdate }}</p>
+  <hr />
+{% endfor %} 
 {% endblock %}
