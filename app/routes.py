@@ -1,7 +1,7 @@
 import feedparser
 from app import app, db
 from app.models import Article
-from flask import render_template, request
+from flask import render_template, url_for, request
 from time import mktime
 from datetime import datetime, timezone
 
@@ -30,6 +30,8 @@ def index():
 
     page = request.args.get('page', 1, type=int)
     articles = Article.query.order_by(Article.pubdate.desc()).paginate(
-        page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False).items
+        page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
+    next_url = url_for('index', page=articles.next_num) if articles.next_num else None
+    prev_url = url_for('index', page=articles.prev_num) if articles.prev_num else None
 
-    return render_template('index.html', title='Home', articles=articles)
+    return render_template('index.html', title='Home', articles=articles.items, next_url=next_url, prev_url=prev_url)

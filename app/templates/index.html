@@ -7,5 +7,12 @@
   <p>Description: {{ article.desc }}</p>
   <p>Date Published: {{ article.pubdate }}</p>
   <hr />
-{% endfor %} 
+{% endfor %}
+ 
+{% if prev_url %}
+  <a href="{{ prev_url }}">&lt; Newer</a>
+{% endif %} 
+{% if next_url %}
+  <a href="{{ next_url }}">Older &gt;</a>
+{% endif %} 
 {% endblock %}
