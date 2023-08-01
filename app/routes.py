@@ -13,8 +13,7 @@ def to_datetime(entry_date):
 @app.route('/')
 @app.route('/home')
 def index():
-    feeds = ['https://pitchfork.com/rss/news/', 'https://www.nme.com/news/music/feed',
-             'https://i-d.vice.com/en_uk/rss/topic/music', 'https://www.rollingstone.com/music/music-news/feed/']
+    feeds = ['https://pitchfork.com/rss/news/', 'https://i-d.vice.com/en_uk/rss/topic/music', 'https://www.rollingstone.com/music/music-news/feed/']
 
     for feed in feeds:
         parsed_feed = feedparser.parse(feed)
@@ -31,7 +30,9 @@ def index():
     page = request.args.get('page', 1, type=int)
     articles = Article.query.order_by(Article.pubdate.desc()).paginate(
         page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-    next_url = url_for('index', page=articles.next_num) if articles.next_num else None
-    prev_url = url_for('index', page=articles.prev_num) if articles.prev_num else None
+    next_url = url_for(
+        'index', page=articles.next_num) if articles.next_num else None
+    prev_url = url_for(
+        'index', page=articles.prev_num) if articles.prev_num else None
 
     return render_template('index.html', title='Home', articles=articles.items, next_url=next_url, prev_url=prev_url)
