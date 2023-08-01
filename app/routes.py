@@ -28,6 +28,6 @@ def index():
                 db.session.add(new_article)
                 db.session.commit()
 
-    articles = Article.query.order_by(desc(Article.pubdate())).all()
+    articles = Article.query.order_by(desc(Article.pubdate)).all()
 
     return render_template('index.html', title='Home', articles=articles)
