@@ -13,7 +13,7 @@ def to_datetime(entry_date):
 @app.route('/')
 @app.route('/home')
 def index():
-    feeds = ['https://pitchfork.com/rss/reviews/albums/']
+    feeds = ['https://pitchfork.com/rss/reviews/albums/', 'https://www.rollingstone.com/music/music-album-reviews/feed/']
 
     for feed in feeds:
         parsed_feed = feedparser.parse(feed)
@@ -22,7 +22,8 @@ def index():
             review_title = Review.query.filter_by(title=entry.title).first()
 
             if review_title is None:
-                new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(entry.published_parsed), guid=entry.id)
+                new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(
+                    entry.published_parsed), guid=entry.id)
                 db.session.add(new_review)
                 db.session.commit()
 
