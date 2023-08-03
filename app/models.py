@@ -1,12 +1,11 @@
 from app import db
 
-
-class Article(db.Model):
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), index=True, unique=True)
-    link = db.Column(db.String(256), index=True, unique=True)
-    desc = db.Column(db.String(512))
+    title = db.Column(db.String(128))
+    link = db.Column(db.String(256), unique=True)
     pubdate = db.Column(db.DateTime)
-
+    guid = db.Column(db.String(256), unique=True)
+    
     def __repr__(self):
-        return f'Title <{self.title}>, Source <{self.source}>, Date Published <{self.pubdate}>'
+        return f'Title <{self.title}>, Date Published <{self.pubdate}>'
