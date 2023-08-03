@@ -1,11 +1,11 @@
 {% extends "base.html" %} 
 
 {% block content %} 
-{% for article in articles %}
-  <p>Title: {{ article.title }}</p>
-  <p>Link: <a href="{{ article.link }}">{{ article.link }}</a></p>
-  <p>Description: {{ article.desc }}</p>
-  <p>Date Published: {{ article.pubdate }}</p>
+{% for review in reviews %}
+  <p>Title: {{ review.title }}</p>
+  <p>Link: <a href="{{ review.link }}">{{ review.link }}</a></p>
+  <p>Date Published: {{ review.pubdate }}</p>
+  <p>GUID: {{ review.guid }}</p>
   <hr />
 {% endfor %}
  
