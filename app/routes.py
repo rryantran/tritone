@@ -9,8 +9,11 @@ from datetime import datetime, timezone
 def to_datetime(entry_date):
     return datetime.fromtimestamp(mktime(entry_date), timezone.utc)
 
-
 @app.route('/')
+@app.route('/home')
+def index():
+    return render_template('index.html')
+
 @app.route('/reviews')
 def reviews():
     feeds = ['https://pitchfork.com/rss/reviews/albums/', 'https://www.rollingstone.com/music/music-album-reviews/feed/']
