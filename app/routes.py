@@ -11,8 +11,8 @@ def to_datetime(entry_date):
 
 
 @app.route('/')
-@app.route('/home')
-def index():
+@app.route('/reviews')
+def reviews():
     feeds = ['https://pitchfork.com/rss/reviews/albums/', 'https://www.rollingstone.com/music/music-album-reviews/feed/']
 
     for feed in feeds:
@@ -31,8 +31,8 @@ def index():
     reviews = Review.query.order_by(Review.pubdate.desc()).paginate(
         page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
     next_url = url_for(
-        'index', page=reviews.next_num) if reviews.next_num else None
+        'reviews', page=reviews.next_num) if reviews.next_num else None
     prev_url = url_for(
-        'index', page=reviews.prev_num) if reviews.prev_num else None
+        'reviews', page=reviews.prev_num) if reviews.prev_num else None
 
-    return render_template('index.html', title='Home', reviews=reviews.items, next_url=next_url, prev_url=prev_url)
+    return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url)
