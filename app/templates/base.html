@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title }} - Tritone</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/output.css') }}">
-
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/output.css') }}"
+    />
   </head>
   <body>
-    <div>
-      Tritone:
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('reviews') }}">Reviews</a>
-    </div>
+    <nav class="flex justify-between items-end w-full p-5">
+      <div class="text-4xl font-extrabold">tritone</div>
+
+      <div class="flex justify-evenly font-medium min-w-navlink">
+        <a class="hover:underline"href="{{ url_for('index') }}">home</a>
+        <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
+        <a class="hover:underline" href="#">news</a>
+        <a class="hover:underline" href="#">about</a>
+      </div>
+    </nav>
+
     <hr />
+
     {% block content %} {% endblock %}
   </body>
 </html>
