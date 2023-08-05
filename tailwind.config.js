@@ -3,7 +3,11 @@ module.exports = {
   mode: 'jit',
   content: ["./app/templates/**/*.html"],
   theme: {
-    extend: {},
+    extend: {
+      minWidth: {
+        'navlink': '20rem',
+      },
+    },
   },
   plugins: [],
 }
