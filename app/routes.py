@@ -12,7 +12,7 @@ def to_datetime(entry_date):
 @app.route('/')
 @app.route('/home')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Home')
 
 @app.route('/reviews')
 def reviews():
