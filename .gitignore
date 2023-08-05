@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # Extra
+app.db
 node_modules/
