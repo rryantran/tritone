@@ -11,16 +11,15 @@
     />
   </head>
   <body>
-    <nav class="flex justify-between items-end w-full p-5">
-      <div class="text-4xl font-extrabold">tritone</div>
+    <header class="flex justify-between items-end w-full p-5">
+      <a class="text-4xl font-extrabold" href="{{ url_for('index') }}">tritone</a>
 
-      <div class="flex justify-evenly font-medium min-w-navlink">
-        <a class="hover:underline"href="{{ url_for('index') }}">home</a>
+      <nav class="flex justify-evenly font-medium min-w-navlink">
         <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
         <a class="hover:underline" href="{{ url_for('news') }}">news</a>
         <a class="hover:underline" href="{{ url_for('about') }}">about</a>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <hr />
 
