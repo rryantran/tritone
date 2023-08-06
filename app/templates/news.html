@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+{% for article in articles %}
+  <p>Title: {{ article.title }}</p>
+  <p>Link: <a href="{{ article.link }}">{{ article.link }}</a></p>
+  <p>Date Published: {{ article.pubdate }}</p>
+  <p>GUID: {{ article.guid }}</p>
+  <hr />
+{% endfor %}
+ 
+{% if prev_url %}
+  <a href="{{ prev_url }}">&lt; Newer</a>
+{% endif %} 
+{% if next_url %}
+  <a href="{{ next_url }}">Older &gt;</a>
+{% endif %} 
+{% endblock %}
