@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       minWidth: {
-        'navlink': '20rem',
+        'navlink': '15rem',
       },
     },
   },
