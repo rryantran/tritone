@@ -73,4 +73,4 @@ def news():
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='Abour')
+    return render_template('about.html', title='About')
