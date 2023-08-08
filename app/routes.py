@@ -46,8 +46,8 @@ def reviews():
 
 @app.route('/news')
 def news():
-    feeds = ['https://pitchfork.com/rss/news/',
-             'https://www.rollingstone.com/music/music-news/feed/']
+    feeds = ['https://pitchfork.com/rss/news/', 'https://www.rollingstone.com/music/music-news/feed/',
+             'https://www.spin.com/news/feed/', 'https://www.billboard.com/c/music/music-news/feed/']
 
     for feed in feeds:
         parsed_feed = feedparser.parse(feed)
@@ -70,6 +70,7 @@ def news():
         'news', page=articles.prev_num) if articles.has_prev else None
 
     return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url)
+
 
 @app.route('/about')
 def about():
