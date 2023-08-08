@@ -28,7 +28,7 @@ def reviews():
             review_guid = Review.query.filter_by(guid=entry.id).first()
 
             if review_guid is None:
-                new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(
+                new_review = Review(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id)
                 db.session.add(new_review)
                 db.session.commit()
@@ -56,7 +56,7 @@ def news():
             article_guid = Article.query.filter_by(guid=entry.id).first()
 
             if article_guid is None:
-                new_article = Article(title=entry.title, link=entry.link, pubdate=to_datetime(
+                new_article = Article(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id)
                 db.session.add(new_article)
                 db.session.commit()
