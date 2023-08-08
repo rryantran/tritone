@@ -4,9 +4,9 @@
 {% for article in articles %}
   <article class="px-5 py-3">
     <h1 class="text-xl font-semibold">{{ article.title }}</h1>
-    <p>Author: {{ article.author }}</p>
-
+    <p>By {{ article.author }}</p>
     <p>Date Published: {{ article.pubdate }}</p>
+    <p>Source: {{ article.source }}</p>
   
     <div class="hover:text-blue-500">
       <a href="{{ article.link }}">read more</a>

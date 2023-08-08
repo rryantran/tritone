@@ -4,9 +4,9 @@
 {% for review in reviews %}
   <article class="px-5 py-3">
     <h1 class="text-xl font-semibold">{{ review.title }}</h1>
-    <p>Author: {{ review.author }}</p>
-
+    <p>By {{ review.author }}</p>
     <p>Date Published: {{ review.pubdate }}</p>
+    <p>Source: {{ review.source }}</p>
   
     <div class="hover:text-blue-500">
       <a href="{{ review.link }}">read more</a>

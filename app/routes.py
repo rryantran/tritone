@@ -35,7 +35,7 @@ def reviews():
 
                 new_review = Review(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id, source=source)
-                
+
                 db.session.add(new_review)
                 db.session.commit()
 
@@ -68,7 +68,7 @@ def news():
 
                 new_article = Article(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id, source=source)
-                
+
                 db.session.add(new_article)
                 db.session.commit()
 
