@@ -8,9 +8,10 @@ class Review(db.Model):
     link = db.Column(db.String(256), unique=True)
     pubdate = db.Column(db.DateTime)
     guid = db.Column(db.String(256), unique=True)
+    source = db.Column(db.String(218))
 
     def __repr__(self):
-        return f'Title <{self.title}>, Author(s) <{self.author}>'
+        return f'Title <{self.title}>, Author <{self.author}>'
 
 
 class Article(db.Model):
@@ -20,6 +21,7 @@ class Article(db.Model):
     link = db.Column(db.String(256), unique=True)
     pubdate = db.Column(db.DateTime)
     guid = db.Column(db.String(256), unique=True)
+    source = db.Column(db.String(218))
 
     def __repr__(self):
-        return f'Title <{self.title}>, Author(s) <{self.author}>'
+        return f'Title <{self.title}>, Author <{self.author}>'
