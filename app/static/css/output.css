@@ -562,7 +562,7 @@ video {
   width: 100%;
 }
 
-.min-w-navlink {
+.min-w-\[15rem\] {
   min-width: 15rem;
 }
 
