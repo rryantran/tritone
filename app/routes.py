@@ -1,7 +1,8 @@
 import feedparser
 from app import app, db
+from app.forms import LoginForm
 from app.models import Review, Article
-from flask import render_template, url_for, request
+from flask import render_template, url_for, request, redirect
 from urllib.parse import urlparse
 from time import mktime
 from datetime import datetime, timezone
@@ -16,6 +17,12 @@ def to_datetime(entry_date):
 def index():
     return render_template('index.html', title='Home')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/home')
+    return render_template('login.html', title='Login', form=form)
 
 @app.route('/reviews')
 def reviews():
