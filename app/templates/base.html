@@ -19,7 +19,11 @@
         <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
         <a class="hover:underline" href="{{ url_for('news') }}">news</a>
         <a class="hover:underline" href="{{ url_for('about') }}">about</a>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}">logout</a>
+        {% else %}
         <a href="{{ url_for('login') }}">login</a>
+        {% endif %}
       </nav>
     </header>
 
