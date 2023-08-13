@@ -10,10 +10,12 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remeber Me')
     submit = SubmitField('Sign In')
 
+
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password_2 = PasswordField('Password', validators=[DataRequired(), EqualTo('password')])
+    password_2 = PasswordField('Password', validators=[
+                               DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_email(self, email):

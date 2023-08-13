@@ -566,10 +566,6 @@ video {
   min-width: 15rem;
 }
 
-.min-w-\[10rem\] {
-  min-width: 10rem;
-}
-
 .min-w-\[5rem\] {
   min-width: 5rem;
 }
@@ -595,15 +591,6 @@ video {
   justify-content: space-evenly;
 }
 
-.border {
-  border-width: 1px;
-}
-
-.border-red-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
 .p-5 {
   padding: 1.25rem;
 }
@@ -616,11 +603,6 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .text-center {
