@@ -1,6 +1,6 @@
 import feedparser
 from app import app, db
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
 from app.models import User, Review, Article
 from flask import render_template, url_for, request, redirect
 from flask_login import current_user, login_user, logout_user
@@ -41,6 +41,18 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        user = User(email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('login'))
+
+    return render_template('register.html', title='Register', form=form)
 
 @app.route('/reviews')
 def reviews():
