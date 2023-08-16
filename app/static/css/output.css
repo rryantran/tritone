@@ -570,6 +570,10 @@ video {
   min-width: 5rem;
 }
 
+.min-w-\[2\.5rem\] {
+  min-width: 2.5rem;
+}
+
 .max-w-fit {
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -589,6 +593,15 @@ video {
 
 .justify-evenly {
   justify-content: space-evenly;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
 .p-5 {

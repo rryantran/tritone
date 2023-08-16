@@ -86,7 +86,7 @@ def reviews():
     prev_url = url_for(
         'reviews', page=reviews.prev_num) if reviews.has_prev else None
 
-    return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url)
+    return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url, page=page)
 
 
 @app.route('/news')
@@ -119,7 +119,7 @@ def news():
     prev_url = url_for(
         'news', page=articles.prev_num) if articles.has_prev else None
 
-    return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url)
+    return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url, page=page)
 
 
 @app.route('/about')
