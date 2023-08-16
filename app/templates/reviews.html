@@ -5,7 +5,7 @@
 <article class="px-5 py-3">
   <h1 class="text-xl font-semibold">{{ review.title }}</h1>
   <p>By {{ review.author }}</p>
-  <p>Date Published: {{ review.pubdate }}</p>
+  <p>Date Published: {{ moment(review.pubdate).format('LL') }}</p>
   <p>Source: {{ review.source }}</p>
 
   <div class="max-w-fit hover:text-blue-500">
