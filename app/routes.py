@@ -77,6 +77,8 @@ def reviews():
 
                 db.session.add(new_review)
                 db.session.commit()
+            else:
+                break
 
     page = request.args.get('page', 1, type=int)
     reviews = Review.query.order_by(Review.pubdate.desc()).paginate(
@@ -110,6 +112,8 @@ def news():
 
                 db.session.add(new_article)
                 db.session.commit()
+            else:
+                break
 
     page = request.args.get('page', 1, type=int)
     articles = Article.query.order_by(Article.pubdate.desc()).paginate(

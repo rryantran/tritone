@@ -28,8 +28,8 @@ class Review(db.Model):
     title = db.Column(db.String(128))
     author = db.Column(db.String(128))
     link = db.Column(db.String(256), unique=True)
-    pubdate = db.Column(db.DateTime)
-    guid = db.Column(db.String(256), unique=True)
+    pubdate = db.Column(db.DateTime, index=True)
+    guid = db.Column(db.String(256), index=True, unique=True)
     source = db.Column(db.String(218))
 
     def __repr__(self):
@@ -41,8 +41,8 @@ class Article(db.Model):
     title = db.Column(db.String(128))
     author = db.Column(db.String(128))
     link = db.Column(db.String(256), unique=True)
-    pubdate = db.Column(db.DateTime)
-    guid = db.Column(db.String(256), unique=True)
+    pubdate = db.Column(db.DateTime, index=True)
+    guid = db.Column(db.String(256), index=True, unique=True)
     source = db.Column(db.String(218))
 
     def __repr__(self):
