@@ -1,6 +1,6 @@
 import feedparser
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, BookmarkerForm
 from app.models import User, Review, Article
 from flask import render_template, url_for, request, redirect
 from flask_login import current_user, login_user, logout_user
@@ -90,6 +90,23 @@ def reviews():
 
     return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url, page=page)
 
+@app.route('/bookmark/<articleid>', methods=['POST'])
+def bookmark(articleid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        article = Article.query.filter_by(title=articleid).first()
+        current_user.bookmark_article(article)
+        db.session.commit()
+    return redirect(url_for('news'))
+
+@app.route('/unbookmark/<articleid>', methods=['POST'])
+def unbookmark(articleid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        article = Article.query.filter_by(id=articleid).first()
+        current_user.unbookmark_article(article)
+        db.session.commit()
+    return redirect(url_for('news'))
 
 @app.route('/news')
 def news():
@@ -122,8 +139,10 @@ def news():
         'news', page=articles.next_num) if articles.has_next else None
     prev_url = url_for(
         'news', page=articles.prev_num) if articles.has_prev else None
+    
+    form = BookmarkerForm()
 
-    return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url, page=page)
+    return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url, page=page, form=form)
 
 
 @app.route('/about')

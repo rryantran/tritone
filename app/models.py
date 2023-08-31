@@ -8,10 +8,15 @@ def load_user(id):
     return User.query.get(int(id))
 
 
+user_article = db.Table('user_article', db.Column('user_id', db.Integer, db.ForeignKey(
+    'user.id')), db.Column('article_id', db.Integer, db.ForeignKey('article.id')))
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(128), unique=True)
     password_hash = db.Column(db.String(128))
+    articles = db.relationship('Article', secondary=user_article, back_populates='bookmarkers')
 
     def __repr__(self):
         return f'User <{self.email}>'
@@ -21,7 +26,14 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
+    
+    def bookmark_article(self, article):
+        if article not in self.articles:
+            self.articles.append(article)
+    
+    def unbookmark_article(self, article):
+        if article in self.articles:
+            self.articles.remove(article)
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +56,7 @@ class Article(db.Model):
     pubdate = db.Column(db.DateTime, index=True)
     guid = db.Column(db.String(256), index=True, unique=True)
     source = db.Column(db.String(218))
+    bookmarkers = db.relationship('User', secondary=user_article, back_populates='articles')
 
     def __repr__(self):
         return f'Title <{self.title}>, Author <{self.author}>'
