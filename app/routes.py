@@ -90,14 +90,16 @@ def reviews():
 
     return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url, page=page)
 
+
 @app.route('/bookmark/<articleid>', methods=['POST'])
 def bookmark(articleid):
     form = BookmarkerForm()
     if form.validate_on_submit():
-        article = Article.query.filter_by(title=articleid).first()
+        article = Article.query.filter_by(id=articleid).first()
         current_user.bookmark_article(article)
         db.session.commit()
     return redirect(url_for('news'))
+
 
 @app.route('/unbookmark/<articleid>', methods=['POST'])
 def unbookmark(articleid):
@@ -107,6 +109,7 @@ def unbookmark(articleid):
         current_user.unbookmark_article(article)
         db.session.commit()
     return redirect(url_for('news'))
+
 
 @app.route('/news')
 def news():
@@ -139,10 +142,15 @@ def news():
         'news', page=articles.next_num) if articles.has_next else None
     prev_url = url_for(
         'news', page=articles.prev_num) if articles.has_prev else None
-    
+
     form = BookmarkerForm()
 
     return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url, page=page, form=form)
+
+
+@app.route('/bookmarks')
+def bookmarks():
+    return render_template('bookmarks.html', title='Bookmarks')
 
 
 @app.route('/about')
