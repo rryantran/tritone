@@ -1,7 +1,7 @@
 {% extends "base.html" %} 
 
-{% block content %} 
-
+{% block content %}
+<!-- ARTICLES -->
 {% for article in articles %}
 <article class="px-5 py-3">
   <h1 class="text-xl font-semibold">{{ article.title }}</h1>
@@ -9,6 +9,7 @@
   <p>Date Published: {{ moment(article.pubdate).format('LL') }}</p>
   <p>Source: {{ article.source }}</p>
 
+  {% if current_user.is_authenticated %} 
   {% if article not in current_user.articles %}
   <form action="{{ url_for('bookmark', articleid=article.id) }}" method="post">
     {{ form.hidden_tag() }} 
@@ -22,6 +23,7 @@
     {{ form.hidden_tag() }} 
     {{ form.submit(value="Unbookmark") }}
   </form>
+  {% endif %} 
   {% endif %}
 
   <div class="max-w-fit hover:text-blue-500">
@@ -50,15 +52,18 @@
 <hr />
 {% endfor %}
 
+<!-- NAVIGATION -->
 <div class="flex justify-center py-3">
   <div class="text-center min-w-[5rem]">
     {% if prev_url %}
     <a href="{{ prev_url }}">&lt; Newer</a>
     {% endif %}
   </div>
+
   <div class="text-center min-w-[5rem]">
     <p>Page {{ page }}</p>
   </div>
+
   <div class="text-center min-w-[5rem]">
     {% if next_url %}
     <a href="{{ next_url }}">Older &gt;</a>
