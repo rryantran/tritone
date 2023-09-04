@@ -1,12 +1,30 @@
 {% extends "base.html" %} 
 
-{% block content %} 
+{% block content %}
+<!-- REVIEWS -->
 {% for review in reviews %}
 <article class="px-5 py-3">
   <h1 class="text-xl font-semibold">{{ review.title }}</h1>
   <p>By {{ review.author }}</p>
   <p>Date Published: {{ moment(review.pubdate).format('LL') }}</p>
   <p>Source: {{ review.source }}</p>
+
+  {% if current_user.is_authenticated %} 
+  {% if review not in current_user.reviews %}
+  <form action="{{ url_for('bookmark_review', reviewid=review.id) }}" method="post">
+    {{ form.hidden_tag() }} 
+    {{ form.submit(value="Bookmark") }}
+  </form>
+  {% else %}
+  <form
+    action="{{ url_for('unbookmark_review', reviewid=review.id) }}"
+    method="post"
+  >
+    {{ form.hidden_tag() }} 
+    {{ form.submit(value="Unbookmark") }}
+  </form>
+  {% endif %} 
+  {% endif %}
 
   <div class="max-w-fit hover:text-blue-500">
     <a href="{{ review.link }}"
@@ -32,17 +50,20 @@
   </div>
 </article>
 <hr />
-{% endfor %} 
+{% endfor %}
 
+<!-- NAVIGATION -->
 <div class="flex justify-center py-3">
   <div class="text-center min-w-[5rem]">
     {% if prev_url %}
     <a href="{{ prev_url }}">&lt; Newer</a>
     {% endif %}
   </div>
+
   <div class="text-center min-w-[5rem]">
     <p>Page {{ page }}</p>
   </div>
+
   <div class="text-center min-w-[5rem]">
     {% if next_url %}
     <a href="{{ next_url }}">Older &gt;</a>

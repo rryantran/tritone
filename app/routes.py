@@ -56,6 +56,26 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
+@app.route('/bookmark-review/<reviewid>', methods=['POST'])
+def bookmark_review(reviewid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        review = Review.query.filter_by(id=reviewid).first()
+        current_user.bookmark_review(review)
+        db.session.commit()
+    return redirect(url_for('reviews'))
+
+
+@app.route('/unbookmark-review/<reviewid>', methods=['POST'])
+def unbookmark_review(reviewid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        review = Review.query.filter_by(id=reviewid).first()
+        current_user.unbookmark_review(review)
+        db.session.commit()
+    return redirect(url_for('reviews'))
+
+
 @app.route('/reviews')
 def reviews():
     feeds = ['https://pitchfork.com/rss/reviews/albums/',
@@ -88,27 +108,9 @@ def reviews():
     prev_url = url_for(
         'reviews', page=reviews.prev_num) if reviews.has_prev else None
 
-    return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url, page=page)
-
-
-@app.route('/bookmark/<articleid>', methods=['POST'])
-def bookmark(articleid):
     form = BookmarkerForm()
-    if form.validate_on_submit():
-        article = Article.query.filter_by(id=articleid).first()
-        current_user.bookmark_article(article)
-        db.session.commit()
-    return redirect(url_for('news'))
 
-
-@app.route('/unbookmark/<articleid>', methods=['POST'])
-def unbookmark(articleid):
-    form = BookmarkerForm()
-    if form.validate_on_submit():
-        article = Article.query.filter_by(id=articleid).first()
-        current_user.unbookmark_article(article)
-        db.session.commit()
-    return redirect(url_for('news'))
+    return render_template('reviews.html', title='Reviews', reviews=reviews.items, next_url=next_url, prev_url=prev_url, page=page, form=form)
 
 
 @app.route('/news')
@@ -148,9 +150,31 @@ def news():
     return render_template('news.html', title='News', articles=articles.items, next_url=next_url, prev_url=prev_url, page=page, form=form)
 
 
+@app.route('/bookmark-article/<articleid>', methods=['POST'])
+def bookmark_article(articleid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        article = Article.query.filter_by(id=articleid).first()
+        current_user.bookmark_article(article)
+        db.session.commit()
+    return redirect(url_for('news'))
+
+
+@app.route('/unbookmark-article/<articleid>', methods=['POST'])
+def unbookmark_article(articleid):
+    form = BookmarkerForm()
+    if form.validate_on_submit():
+        article = Article.query.filter_by(id=articleid).first()
+        current_user.unbookmark_article(article)
+        db.session.commit()
+    return redirect(url_for('news'))
+
+
 @app.route('/bookmarks')
 def bookmarks():
-    return render_template('bookmarks.html', title='Bookmarks')
+    articles = current_user.articles
+    reviews = current_user.reviews
+    return render_template('bookmarks.html', title='Bookmarks', articles=articles, reviews=reviews)
 
 
 @app.route('/about')
