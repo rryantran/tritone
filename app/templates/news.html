@@ -11,13 +11,13 @@
 
   {% if current_user.is_authenticated %} 
   {% if article not in current_user.articles %}
-  <form action="{{ url_for('bookmark', articleid=article.id) }}" method="post">
+  <form action="{{ url_for('bookmark_article', articleid=article.id) }}" method="post">
     {{ form.hidden_tag() }} 
     {{ form.submit(value="Bookmark") }}
   </form>
   {% else %}
   <form
-    action="{{ url_for('unbookmark', articleid=article.id) }}"
+    action="{{ url_for('unbookmark_article', articleid=article.id) }}"
     method="post"
   >
     {{ form.hidden_tag() }} 
