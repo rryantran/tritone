@@ -1,2 +1,2 @@
-# tritone
-a flask content aggregator.
+# Tritone
+A Flask content aggregator for music news and album reviews.
