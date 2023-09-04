@@ -2,8 +2,12 @@
 
 {% block content %} 
 
-{% for article in current_user.articles %}
+{% for article in articles %}
 <p>{{ article }}</p>
 {% endfor %}
- 
+
+{% for review in reviews %}
+<p>{{ review }}</p>
+{% endfor %}
+
 {% endblock %}
