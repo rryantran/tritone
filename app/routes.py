@@ -3,7 +3,7 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, BookmarkerForm
 from app.models import User, Review, Article
 from flask import render_template, url_for, request, redirect
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from urllib.parse import urlparse
 from time import mktime
 from datetime import datetime, timezone
@@ -171,6 +171,7 @@ def unbookmark_article(articleid):
 
 
 @app.route('/bookmarks')
+@login_required
 def bookmarks():
     articles = current_user.articles
     reviews = current_user.reviews
