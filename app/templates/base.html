@@ -16,7 +16,7 @@
     {{ moment.include_moment() }}
   </head>
   <body>
-    <header class="flex justify-between items-end w-full p-5">
+    <header class="flex justify-between items-end w-full p-5 border-b-[0.1rem] border-neutral-300">
       <a class="text-4xl font-extrabold" href="{{ url_for('index') }}"
         >tritone</a
       >
@@ -40,8 +40,6 @@
       </nav>
       {% endif %}
     </header>
-
-    <hr />
 
     {% block content %} {% endblock %}
   </body>

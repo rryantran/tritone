@@ -3,7 +3,7 @@
 {% block content %}
 <!-- REVIEWS -->
 {% for review in reviews %}
-<article class="px-5 py-3">
+<article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
   <h1 class="text-xl font-semibold">{{ review.title }}</h1>
   <p>By {{ review.author }}</p>
   <p>Date Published: {{ moment(review.pubdate).format('LL') }}</p>
@@ -49,7 +49,6 @@
     </a>
   </div>
 </article>
-<hr />
 {% endfor %}
 
 <!-- NAVIGATION -->
