@@ -18,10 +18,17 @@
   <body>
     <header class="flex justify-between items-end w-full p-5 border-b-[0.1rem] border-neutral-300">
       <a class="text-4xl font-extrabold" href="{{ url_for('index') }}"
-        >tritone</a
+        >tritone.</a
       >
 
-      {% if current_user.is_authenticated %}
+      {% if current_user.is_anonymous %}
+      <nav class="flex justify-evenly font-medium min-w-[15rem]">
+        <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
+        <a class="hover:underline" href="{{ url_for('news') }}">news</a>
+        <a class="hover:underline" href="{{ url_for('about') }}">about</a>
+        <a class="hover:underline" href="{{ url_for('login') }}">login</a>
+      </nav>
+      {% else %}
       <nav class="flex justify-evenly font-medium min-w-[22rem]">
         <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
         <a class="hover:underline" href="{{ url_for('news') }}">news</a>
@@ -30,13 +37,6 @@
         >
         <a class="hover:underline" href="{{ url_for('about') }}">about</a>
         <a class="hover:underline" href="{{ url_for('logout') }}">logout</a>
-      </nav>
-      {% else %}
-      <nav class="flex justify-evenly font-medium min-w-[15rem]">
-        <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
-        <a class="hover:underline" href="{{ url_for('news') }}">news</a>
-        <a class="hover:underline" href="{{ url_for('about') }}">about</a>
-        <a class="hover:underline" href="{{ url_for('login') }}">login</a>
       </nav>
       {% endif %}
     </header>
