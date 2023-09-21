@@ -175,7 +175,8 @@ def unbookmark_article(articleid):
 def bookmarks():
     articles = current_user.articles
     reviews = current_user.reviews
-    return render_template('bookmarks.html', title='Bookmarks', articles=articles, reviews=reviews)
+    form = BookmarkerForm()
+    return render_template('bookmarks.html', title='Bookmarks', articles=articles, reviews=reviews, form=form)
 
 
 @app.route('/about')

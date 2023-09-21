@@ -1,34 +1,37 @@
 {% extends "base.html" %} 
 
-{% block content %}
-<!-- REVIEWS -->
+{% block content %} 
 {% for review in reviews %}
 <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
+  <!-- REVIEW INFO -->
   <h1 class="text-xl font-semibold">{{ review.title }}</h1>
   <p>By {{ review.author }}</p>
-  <p>Date Published: {{ moment(review.pubdate).format('LL') }}</p>
-  <p>Source: {{ review.source }}</p>
+  <p>{{ moment(review.pubdate).format('LL') }}</p>
+  <p>{{ review.source }}</p>
 
+  <!-- BOOKMARK/UNBOOKMARK -->
   {% if current_user.is_authenticated %} 
   {% if review not in current_user.reviews %}
-  <form action="{{ url_for('bookmark_review', reviewid=review.id) }}" method="post">
-    {{ form.hidden_tag() }} 
-    {{ form.submit(value="Bookmark") }}
+  <form
+    action="{{ url_for('bookmark_review', reviewid=review.id) }}"
+    method="post"
+  >
+    {{ form.hidden_tag() }} {{ form.submit(value="Bookmark") }}
   </form>
   {% else %}
   <form
     action="{{ url_for('unbookmark_review', reviewid=review.id) }}"
     method="post"
   >
-    {{ form.hidden_tag() }} 
-    {{ form.submit(value="Unbookmark") }}
+    {{ form.hidden_tag() }} {{ form.submit(value="Unbookmark") }}
   </form>
   {% endif %} 
   {% endif %}
 
+  <!-- LINK -->
   <div class="max-w-fit hover:text-blue-500">
-    <a href="{{ review.link }}"
-      >read more
+    <a href="{{ review.link }}" target="_blank"
+      >Read More
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"

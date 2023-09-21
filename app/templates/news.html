@@ -1,34 +1,37 @@
 {% extends "base.html" %} 
 
-{% block content %}
-<!-- ARTICLES -->
+{% block content %} 
 {% for article in articles %}
 <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
+  <!-- ARTICLE INFO -->
   <h1 class="text-xl font-semibold">{{ article.title }}</h1>
   <p>By {{ article.author }}</p>
-  <p>Date Published: {{ moment(article.pubdate).format('LL') }}</p>
-  <p>Source: {{ article.source }}</p>
+  <p>{{ moment(article.pubdate).format('LL') }}</p>
+  <p>{{ article.source }}</p>
 
+  <!-- BOOKMARK/UNBOOKMARK -->
   {% if current_user.is_authenticated %} 
   {% if article not in current_user.articles %}
-  <form action="{{ url_for('bookmark_article', articleid=article.id) }}" method="post">
-    {{ form.hidden_tag() }} 
-    {{ form.submit(value="Bookmark") }}
+  <form
+    action="{{ url_for('bookmark_article', articleid=article.id) }}"
+    method="post"
+  >
+    {{ form.hidden_tag() }} {{ form.submit(value="Bookmark") }}
   </form>
   {% else %}
   <form
     action="{{ url_for('unbookmark_article', articleid=article.id) }}"
     method="post"
   >
-    {{ form.hidden_tag() }} 
-    {{ form.submit(value="Unbookmark") }}
+    {{ form.hidden_tag() }} {{ form.submit(value="Unbookmark") }}
   </form>
   {% endif %} 
   {% endif %}
 
+  <!-- LINK -->
   <div class="max-w-fit hover:text-blue-500">
-    <a href="{{ article.link }}"
-      >read more
+    <a href="{{ article.link }}" target="_blank"
+      >Read More
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
