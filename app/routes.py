@@ -78,8 +78,8 @@ def unbookmark_review(reviewid):
 
 @app.route('/reviews')
 def reviews():
-    feeds = ['https://pitchfork.com/rss/reviews/albums/',
-             'https://www.rollingstone.com/music/music-album-reviews/feed/', 'https://www.nme.com/reviews/album/feed']
+    feeds = ['https://pitchfork.com/rss/reviews/albums/', 'https://www.rollingstone.com/music/music-album-reviews/feed/',
+             'https://www.nme.com/reviews/album/feed']
 
     for feed in feeds:
         parsed_feed = feedparser.parse(feed)
@@ -92,7 +92,7 @@ def reviews():
                 if source[0:4] != 'www.':
                     source = 'www.' + source
 
-                new_review = Review(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
+                new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id, source=source)
 
                 db.session.add(new_review)
@@ -116,7 +116,7 @@ def reviews():
 @app.route('/news')
 def news():
     feeds = ['https://pitchfork.com/rss/news/', 'https://www.rollingstone.com/music/music-news/feed/',
-             'https://www.billboard.com/c/music/music-news/feed/', 'https://www.nme.com/news/music/feed']
+             'https://www.nme.com/news/music/feed', 'https://www.stereogum.com/category/news/feed/']
 
     for feed in feeds:
         parsed_feed = feedparser.parse(feed)
@@ -129,7 +129,7 @@ def news():
                 if source[0:4] != 'www.':
                     source = 'www.' + source
 
-                new_article = Article(title=entry.title, author=entry.author, link=entry.link, pubdate=to_datetime(
+                new_article = Article(title=entry.title, link=entry.link, pubdate=to_datetime(
                     entry.published_parsed), guid=entry.id, source=source)
 
                 db.session.add(new_article)

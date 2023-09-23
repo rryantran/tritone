@@ -4,7 +4,6 @@
 {% for review in current_user.reviews %}
 <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
   <h1 class="text-xl font-semibold">{{ review.title }}</h1>
-  <p>By {{ review.author }}</p>
   <p>{{ moment(review.pubdate).format('LL') }}</p>
   <p>{{ review.source }}</p>
 
