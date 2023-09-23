@@ -170,13 +170,20 @@ def unbookmark_article(articleid):
     return redirect(url_for('news'))
 
 
-@app.route('/bookmarks')
+@app.route('/bookmarks/reviews')
 @login_required
-def bookmarks():
-    articles = current_user.articles
+def bookmarks_r():
     reviews = current_user.reviews
     form = BookmarkerForm()
-    return render_template('bookmarks.html', title='Bookmarks', articles=articles, reviews=reviews, form=form)
+    return render_template('bookmarks-r.html', title='Bookmarks', reviews=reviews, form=form)
+
+
+@app.route('/bookmarks/articles')
+@login_required
+def bookmarks_a():
+    articles = current_user.articles
+    form = BookmarkerForm()
+    return render_template('bookmarks-a.html', title='Bookmarks', articles=articles, form=form)
 
 
 @app.route('/about')

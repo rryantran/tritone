@@ -1,15 +1,19 @@
 {% extends "base.html" %} 
 
-{% block content %} 
-{% for review in current_user.reviews %}
+{% block content %}
+<nav class="flex justify-evenly py-5 border-b-[0.1rem] border-neutral-300">
+  <a href={{ url_for('bookmarks_r') }}>reviews</a>
+  <a class="border-b-[0.2rem] border-black" href={{ url_for('bookmarks_a') }}>articles</a>
+</nav>
+{% for article in articles %}
 <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
-  <h1 class="text-xl font-semibold">{{ review.title }}</h1>
-  <p>{{ moment(review.pubdate).format('LL') }}</p>
-  <p>{{ review.source }}</p>
+  <h1 class="text-xl font-semibold">{{ article.title }}</h1>
+  <p>{{ moment(article.pubdate).format('LL') }}</p>
+  <p>{{ article.source }}</p>
 
   <!-- BOOKMARK/UNBOOKMARK -->
   <form
-    action="{{ url_for('unbookmark_review', reviewid=review.id) }}"
+    action="{{ url_for('unbookmark_article', articleid=article.id) }}"
     method="post"
   >
     {{ form.hidden_tag() }} {{ form.submit(value="Unbookmark") }}
@@ -17,7 +21,7 @@
 
   <!-- LINK -->
   <div class="max-w-fit hover:text-blue-500">
-    <a href="{{ review.link }}" target="_blank"
+    <a href="{{ article.link }}" target="_blank"
       >Read More
       <svg
         xmlns="http://www.w3.org/2000/svg"
