@@ -588,10 +588,6 @@ video {
   max-width: min-content;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .appearance-none {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -634,11 +630,6 @@ video {
   border-width: 1px;
 }
 
-.border-x-2 {
-  border-left-width: 2px;
-  border-right-width: 2px;
-}
-
 .border-b-\[0\.1rem\] {
   border-bottom-width: 0.1rem;
 }
@@ -670,10 +661,6 @@ video {
   padding: 1.25rem;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
@@ -687,11 +674,6 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 
 .py-5 {
@@ -713,18 +695,6 @@ video {
 
 .pt-16 {
   padding-top: 4rem;
-}
-
-.pt-2 {
-  padding-top: 0.5rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
 }
 
 .text-center {
@@ -762,6 +732,10 @@ video {
   font-weight: 600;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -776,36 +750,6 @@ video {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.content-\[BRUH\] {
-  --tw-content: BRUH;
-  content: var(--tw-content);
-}
-
-.content-\[\'bookmark\'\] {
-  --tw-content: 'bookmark';
-  content: var(--tw-content);
-}
-
-.before\:content-\[BRUH\]::before {
-  --tw-content: BRUH;
-  content: var(--tw-content);
-}
-
-.before\:content-\[\'Hello_World\'\]::before {
-  --tw-content: 'Hello World';
-  content: var(--tw-content);
-}
-
-.before\:content-\[\'BRUH\'\]::before {
-  --tw-content: 'BRUH';
-  content: var(--tw-content);
-}
-
-.before\:content-\[\'bookmark\'\]::before {
-  --tw-content: 'bookmark';
-  content: var(--tw-content);
 }
 
 .hover\:bg-neutral-600:hover {

@@ -1,10 +1,50 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+
+{% block content %}
 <div class="p-5">
-  <h1 class="text-2xl font-bold pb-5">about</h1>
+  <h1 class="text-2xl font-bold pb-5">About</h1>
 
   <p>
     Tritone is a Flask web application that aggregates news articles and album
     reviews from a variety of notable music publications.
   </p>
+</div>
+
+<div class="px-5">
+  <p class="font-semibold">Current Sources</p>
+  <ul>
+    <li>
+      <a
+        class="italic hover:text-blue-500"
+        href="https://pitchfork.com/"
+        target="_blank"
+        >Pitchfork</a
+      >
+    </li>
+    <li>
+      <a
+        class="italic hover:text-blue-500"
+        href="https://www.nme.com/"
+        target="_blank"
+        >NME</a
+      >
+    </li>
+    <li>
+      <a
+        class="italic hover:text-blue-500"
+        href="https://www.rollingstone.com/"
+        target="_blank"
+        >Rolling Stone</a
+      >
+    </li>
+    <li>
+      <a
+        class="italic hover:text-blue-500"
+        href="https://www.stereogum.com/"
+        target="_blank"
+        >Stereogum</a
+      >
+    </li>
+  </ul>
 </div>
 {% endblock %}

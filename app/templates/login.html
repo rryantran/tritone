@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <div class="flex justify-center">
   <form
-    class="flex flex-col justify-evenly items-center border rounded-lg shadow m-20"
+    class="flex flex-col justify-evenly items-center border border-neutral-300 rounded-lg m-20"
     action=""
     method="post"
     novalidate
@@ -10,7 +10,7 @@
 
     <div class="px-12 pt-16 pb-8">
       <p class="font-semibold">{{ form.email.label }}</p>
-      <div class="appearance-none border shadow max-w-min">
+      <div class="appearance-none border border-neutral-300 max-w-min">
         {{ form.email(size=32) }}
       </div>
       {% for error in form.email.errors %}
@@ -20,7 +20,7 @@
 
     <div class="px-12 pb-8">
       <p class="font-semibold">{{ form.password.label }}</p>
-      <div class="appearance-none border shadow max-w-min">
+      <div class="appearance-none border border-neutral-300 max-w-min">
         {{ form.password(size=32) }}
       </div>
       {% for error in form.password.errors %}
