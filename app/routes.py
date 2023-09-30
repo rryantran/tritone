@@ -173,7 +173,7 @@ def unbookmark_article(articleid):
 @app.route('/bookmarks/reviews')
 @login_required
 def bookmarks_r():
-    reviews = current_user.reviews
+    reviews = current_user.reviews.order_by(Review.pubdate.desc()).all()
     form = BookmarkerForm()
     return render_template('bookmarks-r.html', title='Bookmarks', reviews=reviews, form=form)
 
@@ -181,7 +181,7 @@ def bookmarks_r():
 @app.route('/bookmarks/articles')
 @login_required
 def bookmarks_a():
-    articles = current_user.articles
+    articles = current_user.articles.order_by(Article.pubdate.desc()).all()
     form = BookmarkerForm()
     return render_template('bookmarks-a.html', title='Bookmarks', articles=articles, form=form)
 

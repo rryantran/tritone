@@ -20,9 +20,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(128), unique=True)
     password_hash = db.Column(db.String(128))
     articles = db.relationship(
-        'Article', secondary=user_article, back_populates='bookmarkers')
+        'Article', secondary=user_article, back_populates='bookmarkers', lazy='dynamic')
     reviews = db.relationship(
-        'Review', secondary=user_review, back_populates='bookmarkers')
+        'Review', secondary=user_review, back_populates='bookmarkers', lazy='dynamic')
 
     def __repr__(self):
         return f'User <{self.email}>'
@@ -61,7 +61,7 @@ class Review(db.Model):
         'User', secondary=user_review, back_populates='reviews')
 
     def __repr__(self):
-        return f'Title <{self.title}>, Author <{self.author}>'
+        return f'Title <{self.title}>'
 
 
 class Article(db.Model):
@@ -75,4 +75,4 @@ class Article(db.Model):
         'User', secondary=user_article, back_populates='articles')
 
     def __repr__(self):
-        return f'Title <{self.title}>, Author <{self.author}>'
+        return f'Title <{self.title}>'
