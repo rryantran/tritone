@@ -3,8 +3,12 @@
 {% block content %}
 <div class="mt-20">
   <nav class="flex justify-evenly py-5 border-b-[0.1rem] border-neutral-300">
-    <a class="border-b-[0.2rem] border-black" href={{ url_for('bookmarks_r') }}>reviews</a>
-    <a href={{ url_for('bookmarks_a') }}>articles</a>
+    <a
+      class="border-b-[0.2rem] border-black"
+      href="{{ url_for('bookmarks_r') }}"
+      >reviews</a
+    >
+    <a href="{{ url_for('bookmarks_a') }}">articles</a>
   </nav>
 
   {% for review in reviews %}
