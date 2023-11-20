@@ -15,21 +15,25 @@
     />
     {{ moment.include_moment() }}
   </head>
-  <body>
-    <header class="flex justify-between items-end w-full p-5 border-b-[0.1rem] border-neutral-300 bg-white fixed top-0">
-      <a class="text-4xl font-extrabold" href="{{ url_for('index') }}"
+  <body class="bg-[#FFFFFF]">
+    <header
+      class="flex justify-between items-end w-full p-5 border-b-[0.1rem] border-[#333333] bg-[#333333] fixed top-0"
+    >
+      <a
+        class="text-4xl text-[#FFFFFF] font-extrabold"
+        href="{{ url_for('index') }}"
         >tritone.</a
       >
 
       {% if current_user.is_anonymous %}
-      <nav class="flex justify-evenly font-medium min-w-[15rem]">
+      <nav class="flex justify-evenly font-medium text-[#FFFFFF] min-w-[15rem]">
         <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
         <a class="hover:underline" href="{{ url_for('news') }}">news</a>
         <a class="hover:underline" href="{{ url_for('about') }}">about</a>
         <a class="hover:underline" href="{{ url_for('login') }}">login</a>
       </nav>
       {% else %}
-      <nav class="flex justify-evenly font-medium min-w-[22rem]">
+      <nav class="flex justify-evenly font-medium text-[#FFFFFF] min-w-[22rem]">
         <a class="hover:underline" href="{{ url_for('reviews') }}">reviews</a>
         <a class="hover:underline" href="{{ url_for('news') }}">news</a>
         <a class="hover:underline" href="{{ url_for('bookmarks_r') }}"
@@ -41,6 +45,6 @@
       {% endif %}
     </header>
 
-    {% block content %} {% endblock %}
+    <div class="text-[#333333]">{% block content %} {% endblock %}</div>
   </body>
 </html>

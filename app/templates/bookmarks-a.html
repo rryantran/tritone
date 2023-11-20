@@ -2,17 +2,17 @@
 
 {% block content %}
 <div class="mt-20">
-  <nav class="flex justify-evenly py-5 border-b-[0.1rem] border-neutral-300">
+  <nav class="flex justify-evenly py-5 border-b-[0.1rem] border-[#C0C0C0]">
     <a href="{{ url_for('bookmarks_r') }}">reviews</a>
     <a
-      class="border-b-[0.2rem] border-black"
+      class="border-b-[0.1rem] border-[#333333] font-bold"
       href="{{ url_for('bookmarks_a') }}"
       >articles</a
     >
   </nav>
 
   {% for article in articles %}
-  <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300">
+  <article class="px-5 py-3 border-b-[0.1rem] border-[#C0C0C0]">
     <h1 class="text-xl font-semibold">{{ article.title }}</h1>
     <p>{{ moment(article.pubdate).format('LL') }}</p>
     <p>{{ article.source }}</p>

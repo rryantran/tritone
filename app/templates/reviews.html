@@ -2,14 +2,14 @@
 
 {% block content %}
 <h1
-  class="min-w-full p-5 border-b-[0.1rem] border-neutral-300 bg-white text-2xl font-bold fixed top-[5.1rem]"
+  class="min-w-full p-5 border-y-[0.1rem] border-[#C0C0C0] bg-[#FFFFFF] text-2xl font-bold fixed top-[5.1rem]"
 >
   Reviews
 </h1>
 
 <div class="mt-[9.5rem]">
   {% for review in reviews %}
-  <article class="px-5 py-3 border-b-[0.1rem] border-neutral-300 bg-white">
+  <article class="px-5 py-3 border-b-[0.1rem] border-[#C0C0C0] bg-[#FFFFFF]">
     <!-- REVIEW INFO -->
     <h1 class="text-xl font-semibold">{{ review.title }}</h1>
     <p>{{ moment(review.pubdate).format('LL') }}</p>
@@ -61,7 +61,7 @@
 {% endfor %}
 
 <!-- NAVIGATION -->
-<div class="flex justify-center py-3">
+<div class="flex justify-center py-3 bg-[#FFFFFF] text-[#333333]">
   <div class="text-center min-w-[5rem]">
     {% if prev_url %}
     <a href="{{ prev_url }}">&lt; Newer</a>
