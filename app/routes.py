@@ -78,27 +78,27 @@ def unbookmark_review(reviewid):
 
 @app.route('/reviews')
 def reviews():
-    feeds = ['https://pitchfork.com/rss/reviews/albums/', 'https://www.rollingstone.com/music/music-album-reviews/feed/',
-             'https://www.nme.com/reviews/album/feed']
+    with open('app/feeds/reviews.txt', 'r') as reviews_feeds:
+        feeds = [feed.strip('\n') for feed in reviews_feeds]
 
-    for feed in feeds:
-        parsed_feed = feedparser.parse(feed)
+        for feed in feeds:
+            parsed_feed = feedparser.parse(feed)
 
-        for entry in parsed_feed.entries:
-            review_guid = Review.query.filter_by(guid=entry.id).first()
+            for entry in parsed_feed.entries:
+                review_guid = Review.query.filter_by(guid=entry.id).first()
 
-            if review_guid is None:
-                source = urlparse(parsed_feed.feed.link).netloc
-                if source[0:4] != 'www.':
-                    source = 'www.' + source
+                if review_guid is None:
+                    source = urlparse(parsed_feed.feed.link).netloc
+                    if source[0:4] != 'www.':
+                        source = 'www.' + source
 
-                new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(
-                    entry.published_parsed), guid=entry.id, source=source)
+                    new_review = Review(title=entry.title, link=entry.link, pubdate=to_datetime(
+                        entry.published_parsed), guid=entry.id, source=source)
 
-                db.session.add(new_review)
-                db.session.commit()
-            else:
-                break
+                    db.session.add(new_review)
+                    db.session.commit()
+                else:
+                    break
 
     page = request.args.get('page', 1, type=int)
     reviews = Review.query.order_by(Review.pubdate.desc()).paginate(
@@ -115,27 +115,27 @@ def reviews():
 
 @app.route('/news')
 def news():
-    feeds = ['https://pitchfork.com/rss/news/', 'https://www.rollingstone.com/music/music-news/feed/',
-             'https://www.nme.com/news/music/feed', 'https://www.stereogum.com/category/news/feed/']
+    with open('app/feeds/news.txt', 'r') as news_feeds:
+        feeds = [feed.strip('\n') for feed in news_feeds]
 
-    for feed in feeds:
-        parsed_feed = feedparser.parse(feed)
+        for feed in feeds:
+            parsed_feed = feedparser.parse(feed)
 
-        for entry in parsed_feed.entries:
-            article_guid = Article.query.filter_by(guid=entry.id).first()
+            for entry in parsed_feed.entries:
+                article_guid = Article.query.filter_by(guid=entry.id).first()
 
-            if article_guid is None:
-                source = urlparse(parsed_feed.feed.link).netloc
-                if source[0:4] != 'www.':
-                    source = 'www.' + source
+                if article_guid is None:
+                    source = urlparse(parsed_feed.feed.link).netloc
+                    if source[0:4] != 'www.':
+                        source = 'www.' + source
 
-                new_article = Article(title=entry.title, link=entry.link, pubdate=to_datetime(
-                    entry.published_parsed), guid=entry.id, source=source)
+                    new_article = Article(title=entry.title, link=entry.link, pubdate=to_datetime(
+                        entry.published_parsed), guid=entry.id, source=source)
 
-                db.session.add(new_article)
-                db.session.commit()
-            else:
-                break
+                    db.session.add(new_article)
+                    db.session.commit()
+                else:
+                    break
 
     page = request.args.get('page', 1, type=int)
     articles = Article.query.order_by(Article.pubdate.desc()).paginate(
